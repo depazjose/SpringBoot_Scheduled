@@ -1,0 +1,41 @@
+server:
+  port: 8090
+  compression:
+    enabled: true
+
+spring:
+  main:
+    web-application-type: servlet
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    url: jdbc:h2:file:~/data/demo;TRACE_LEVEL_FILE=4
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: true
+  redis:
+    host: localhost
+    port: 6379
+  
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+
+inventory:
+  active-items:
+    enabled: true
+    cron-period: 0 * * * * *
